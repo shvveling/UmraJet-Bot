@@ -28,7 +28,7 @@ async def callback_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     data = query.data
     if data in services:
         if data == "ravza":
-            msg = "🕌 *Ravza Ruhsatnomasi*
+            msg = '📋 Ravza Ruhsatnomasi'
 Narxlar:
 ✅ Vizasi bo‘lsa: 15 SAR
 ❌ Vizasi bo‘lmasa: 20 SAR"
