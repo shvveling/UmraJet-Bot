@@ -7,30 +7,24 @@ from config import BOT_TOKEN, ADMINS
 logging.basicConfig(level=logging.INFO)
 
 # Bot sozlamalari
-bot = Bot(token=BOT_TOKEN, parse_mode="HTML")
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot)
 
 # Start komandasi
 @dp.message_handler(commands=["start"])
 async def welcome(msg: types.Message):
-    await msg.answer("👋 <b>Assalomu alaykum!</b>\nUmra Jet botiga xush kelibsiz.\nQuyidagi bo‘limlardan birini tanlang.")
+    await msg.answer("Assalomu alaykum!\nUmra Jet botiga xush kelibsiz.")
 
-# Ravza xizmati
+# Ravza bo‘limi
 @dp.message_handler(lambda msg: "ravza" in msg.text.lower())
 async def ravza(msg: types.Message):
-    await msg.answer(
-        "🕌 <b>Ravza ruhsatnomasi xizmati:</b>\n\n"
-        "✅ Vizasi bo‘lsa: <b>15 SAR</b>\n"
-        "❌ Vizasi bo‘lmasa: <b>20 SAR</b>\n\n"
-        "📆 <i>24/7 buyurtma qilish mumkin</i>\n"
-        "📩 @vip_arabiy bilan bog‘laning.",
-    )
+    await msg.answer("🕌 *Ravza ruhsatnomasi narxi:*\n✅ Vizasi bo‘lsa: 15 SAR\n❌ Vizasi bo‘lmasa: 20 SAR\n\n24/7 ishlaymiz.", parse_mode="Markdown")
 
-# ------------------ KEEP-ALIVE WEB SERVER (Render uchun) ------------------
+# ---------------- KEEP-ALIVE SERVER ----------------
 from aiohttp import web
 
 async def handle(request):
-    return web.Response(text="UmraJet bot is running!")
+    return web.Response(text="UmraJet Bot is running!")
 
 app = web.Application()
 app.add_routes([web.get("/", handle)])
